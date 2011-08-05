@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+	<title>JS ANSI Test</title>
+
+	<style>
+
+		h1 {
+			font-size: 16px;
+		}
+
+		.ansi-canvas pre {
+			width: 80em;
+			height: 30em;
+			overflow: auto;
+			font-size: 16px;
+			/* TODO: embed font */
+			font-family: "Fixedsys Excelsior 3.01","Fixedsys Excelsior 3.00" !important;
+			color: #ccc;
+			background: #000;
+		}
+
+		/* Foreground colours, normal */
+		.ansi-esc-30 {color: rgb(0, 0, 0);}
+		.ansi-esc-31 {color: rgb(170, 0, 0);}
+		.ansi-esc-32 {color: rgb(0, 170, 0);}
+		.ansi-esc-33 {color: rgb(170, 85, 0);}
+		.ansi-esc-34 {color: rgb(0, 0, 170);}
+		.ansi-esc-35 {color: rgb(170, 0, 170);}
+		.ansi-esc-36 {color: rgb(0, 170, 170);}
+		.ansi-esc-37 {color: rgb(170, 170, 170);}
+		.ansi-esc-39 {color: rgb(170, 170, 170);}
+
+		/* Foreground colours, bright */
+		.ansi-esc-0.ansi-esc-30 {color: rgb(85, 85, 85);}
+		.ansi-esc-0.ansi-esc-31 {color: rgb(255, 85, 85);}
+		.ansi-esc-0.ansi-esc-32 {color: rgb(85, 255, 85);}
+		.ansi-esc-0.ansi-esc-33 {color: rgb(255, 255, 85);}
+		.ansi-esc-0.ansi-esc-34 {color: rgb(85, 85, 255);}
+		.ansi-esc-0.ansi-esc-35 {color: rgb(255, 85, 255);}
+		.ansi-esc-0.ansi-esc-36 {color: rgb(85, 255, 255);}
+		.ansi-esc-0.ansi-esc-37 {color: rgb(255, 255, 255);}
+		.ansi-esc-0.ansi-esc-39 {color: rgb(255, 255, 255);}
+
+		/* Background colours, normal */
+		.ansi-esc-40 {background-color: rgb(0, 0, 0);}
+		.ansi-esc-41 {background-color: rgb(170, 0, 0);}
+		.ansi-esc-42 {background-color: rgb(0, 170, 0);}
+		.ansi-esc-43 {background-color: rgb(170, 85, 0);}
+		.ansi-esc-44 {background-color: rgb(0, 0, 170);}
+		.ansi-esc-45 {background-color: rgb(170, 0, 170);}
+		.ansi-esc-46 {background-color: rgb(0, 170, 170);}
+		.ansi-esc-47 {background-color: rgb(170, 170, 170);}
+		.ansi-esc-49 {background-color: rgb(170, 170, 170);}
+
+		/* Background colours, bright */
+		.ansi-esc-0.ansi-esc-40 {background-color: rgb(85, 85, 85);}
+		.ansi-esc-0.ansi-esc-41 {background-color: rgb(255, 85, 85);}
+		.ansi-esc-0.ansi-esc-42 {background-color: rgb(85, 255, 85);}
+		.ansi-esc-0.ansi-esc-43 {background-color: rgb(255, 255, 85);}
+		.ansi-esc-0.ansi-esc-44 {background-color: rgb(85, 85, 255);}
+		.ansi-esc-0.ansi-esc-45 {background-color: rgb(255, 85, 255);}
+		.ansi-esc-0.ansi-esc-46 {background-color: rgb(85, 255, 255);}
+		.ansi-esc-0.ansi-esc-47 {background-color: rgb(255, 255, 255);}
+		.ansi-esc-0.ansi-esc-49 {background-color: rgb(255, 255, 255);}
+
+	</style>
+
+</head>
+<body>
+
+	<h1>JS ANSI Test</h1>
+
+	<div class="ansi-canvas"><pre>This is a test
+
+Char code 9618: &#9618;
+
+U+2592: &#x2592;
+
+                    &#x2591;&#x2592;&#x2593;
+                    &#x2591;&#x2592;&#x2593;
+                    &#x2591;&#x2592;&#x2593;
+                    &#x2591;&#x2592;&#x2593;
+                    &#x2591;&#x2592;&#x2593;
+                    &#x2591;&#x2592;&#x2593;
+                    &#x2591;&#x2592;&#x2593;
+                    &#x2591;&#x2592;&#x2593;
+</pre></div>
+	<div id="test-canvas" class="ansi-canvas"></div>
+
+<script src="test.ans" type="text/ansi" id="test-animation">
+[31m°±²
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script>
+
+	$(function(){
+		var x = $.get('test.bak0.ans', function(data, textStatus, jqXHR){
+			ansify($('#test-canvas'), data);
+		});
+	});
+
+	function ansify($canvas, ansi){
+
+		var ansi_escape_regex = /\x1B\x5B([=?]*)([;0-9]*)([HfABCDRsuJKmhl;p]+)([^\x1B\x5B]+)/g, 
+		    value, m_chunk, index = 0
+		
+		;
+
+		while((m_chunk = ansi_escape_regex.exec(ansi)) !== null){
+
+console.log(m_chunk);
+
+//			value = ansi[index++] || '';
+
+			//specifier_function = specifier_function_map[specifier];
+			//value = specifier_function.call(Stringifier, value, specifier);
+			//value = apply_flags(value, flags, width, precision, length, specifier);
+
+			//if(specifier === '%'){
+			//	index--;
+			//}
+		}
+
+	}
+
+
+	function ansify_old($canvas, ansi){
+/*
+
+° - 176
+± - 177
+² - 178
+
+&#x2591;
+&#x2592;
+&#x2593;
+
+*/
+
+		var /*$canvas = $('#test-canvas'), ansi = $('#test-animation').text(), */ansi_html = '', code, i = 0, ansi_length = ansi.length;
+
+		for(; i < ansi_length; i++){
+
+			console.log(i, ansi.charAt(i) + ' - ' + ansi.charCodeAt(i))
+
+			// Escape sequence, bitches!
+			// http://isthe.com/chongo/tech/comp/ansi_escapes.html
+			// http://en.wikipedia.org/wiki/ANSI_escape_code
+			if(ansi.charCodeAt(i) === 27 && ansi.charCodeAt(i + 1) === 91){
+				// FIXME: wrong - need to lookahead to 'm' or whatever
+				code = ansi.substr(i + 2, 2);
+				i += 5; 
+				ansi_html += '</span><span class="ansi-esc-' + code + '">';
+			}
+
+			// Newline
+			if(ansi.charCodeAt(i) === 13 || ansi.charCodeAt(i) === 10){
+				// Skip first line
+				if(i !== 0){
+					ansi_html += "\n";
+				}
+				continue;
+			}
+
+			// Regular old character
+			ansi_html += '&#x' + (ansi.charCodeAt(i) + 2415) + ';'; // TODO: Any cases where 2415 isn't right?
+
+		}
+//console.log(ansi_html)
+		$canvas.html('<pre><span>' + ansi_html + '</span></pre>');
+
+	}
+
+</script>
+
+</body>
+</html>
