@@ -51,11 +51,19 @@
 	// Do it
 	_ANSI.parse = function(ansi){
 
-		var value, m_chunk, index = 0;
+		var html = '', value, m_chunk, index = 0;
 
-		while((m_chunk = _ANSI.ansi_escape_regex.exec(ansi)) !== null){
+		while((m_chunk = ansi_escape_regex.exec(ansi)) !== null){
 
-	console.log(m_chunk);
+//console.log(m_chunk);
+
+			value = '<span class="ansi-esc-' + m_chunk[2] + '-' + m_chunk[3] + '">';
+
+			value += escape_ansi(m_chunk[4]);
+
+			value += '</span>';
+
+			html += value;
 
 	//			value = ansi[index++] || '';
 
@@ -68,8 +76,31 @@
 			//}
 		}
 
+console.log(html)
+		return html;
+
 	}
 
+	function escape_ansi(ansi){
+		var ansi_html = '', i = ansi.length;
+
+		while(i--){
+
+			// Newline
+			if(ansi.charCodeAt(i) === 13 || ansi.charCodeAt(i) === 10){
+				// Skip first line
+				if(i !== 0){
+					ansi_html += "\n";
+				}
+				continue;
+			}
+
+			ansi_html += '&#x' + (ansi.charCodeAt(i) + 2415) + ';';
+		}
+
+		return ansi_html;
+
+	}
 
 
 	// Private properties
