@@ -98,7 +98,7 @@ U+2592: &#x2592;
 <script src="ansi.js"></script>
 <script>
 	$(function(){
-		$.get('test.bak0.ans', function(data, textStatus, jqXHR){
+		$.get('test.ans', function(data, textStatus, jqXHR){
 			$('#test-canvas').html('<pre>' + ANSI.parse(data) + '</pre>');
 		});
 	});
